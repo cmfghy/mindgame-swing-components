@@ -13,16 +13,36 @@ import javax.swing.text.BadLocationException;
 import javax.swing.text.JTextComponent;
 import javax.swing.text.PlainDocument;
 
+/**
+ * This is a JComboBox extension that suggests possible selections from the available selections.
+ * as the user types into the editor of the combobox. This component is useful when the available
+ * selections are more in number and selecting an item using mouse is difficult or time consuming. 
+ * @author Mayuresh Halshikar
+ *
+ */
 public class SuggesionComboBox extends JComboBox {
 
+	/**
+	 * Serial Version UID
+	 */
 	private static final long serialVersionUID = -3205605545280334098L;
 	
+	/**
+	 * Combobox model used.
+	 */
     private ComboBoxModel model;
+    /**
+     * Editor for the combo box in which the user types.
+     */
     private JTextComponent editor;
-    // flag to indicate if setSelectedItem has been called
-    // subsequent calls to remove/insertString should be ignored
-    private boolean selecting=false;
     
+    /**
+     * The below flag tells if the setSelectedItem has been called or not.
+     */
+    private boolean selecting=false;
+    /**
+     * The document that will be used for the editor component
+     */
     private SuggesionDocument document;
 	
 
@@ -72,12 +92,25 @@ public class SuggesionComboBox extends JComboBox {
     
     
     public void setSelectedItem(Object item) {
+    	/*
+    	 * Set the flag 'selecting' to true and then call setSelectedItem on the model
+    	 * so that subsequent calls to insertString or setText on the document will be
+    	 * ignored until the 'setSelectedItem' method completes. 
+    	 */
         selecting = true;
         model.setSelectedItem(item);
+        /*
+         * As the setSelectedItem is called on the model let's make the flag 'selecting' 
+         * to true. So that further selections can be made.
+         */
         selecting = false;
     }
     
-	
+	/**
+	 * Document class that will be used as a document for the editor component of the combo box
+	 * @author Mayuresh Halshikar
+	 *
+	 */
 	private class SuggesionDocument extends PlainDocument {
 		private static final long serialVersionUID = 3433053469558585929L;
 
@@ -93,7 +126,7 @@ public class SuggesionComboBox extends JComboBox {
 	        // insert the string into the document
 	        super.insertString(offs, str, a);
 	        // lookup and select a matching item
-	        Object item = lookupItem(getText(0, getLength()));
+	        Object item = findItem(getText(0, getLength()));
 	        if (item != null) {
 	            setSelectedItem(item);
 	        } else {
@@ -115,7 +148,7 @@ public class SuggesionComboBox extends JComboBox {
 	        super.insertString(0, text, null);
 	    }
 		
-	    private Object lookupItem(String pattern) {
+	    private Object findItem(String pattern) {
 	        Object selectedItem = model.getSelectedItem();
 	        // only search for a different item if the currently selected does not match
 	        if (selectedItem != null && startsWithIgnoreCase(selectedItem.toString(), pattern)) {
