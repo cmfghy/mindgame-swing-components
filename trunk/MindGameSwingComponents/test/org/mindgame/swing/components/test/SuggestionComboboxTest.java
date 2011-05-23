@@ -3,7 +3,7 @@ package org.mindgame.swing.components.test;
 import javax.swing.JFrame;
 import javax.swing.UIManager;
 
-import org.mindgame.swing.components.models.SuggesionComboBox;
+import org.mindgame.swing.components.SuggesionComboBox;
 
 public class SuggestionComboboxTest extends JFrame {
 	private static final long serialVersionUID = -5033950526168157861L;
