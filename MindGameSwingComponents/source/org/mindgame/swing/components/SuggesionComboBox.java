@@ -1,4 +1,4 @@
-package org.mindgame.swing.components.models;
+package org.mindgame.swing.components;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
