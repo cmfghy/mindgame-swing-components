@@ -3,6 +3,7 @@ package org.mindgame.swing.components.test;
 import java.awt.BorderLayout;
 
 import javax.swing.JFrame;
+import javax.swing.JScrollPane;
 import javax.swing.UIManager;
 import javax.swing.table.TableColumn;
 
@@ -47,7 +48,7 @@ public class BeanTableTest extends JFrame {
 		table.addColumn(name);
 		table.addColumn(age);
 		table.addColumn(city);
-		t.getContentPane().add(table,BorderLayout.CENTER);
+		t.getContentPane().add(new JScrollPane(table),BorderLayout.CENTER);
 		t.setVisible(true);
 	}
 	private static class TestBeanExtracter implements BeanTableDataExtractor<TestBean> {
