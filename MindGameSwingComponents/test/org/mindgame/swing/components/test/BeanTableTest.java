@@ -8,7 +8,7 @@ import javax.swing.table.TableColumn;
 
 import org.mindgame.swing.components.BeanTable;
 import org.mindgame.swing.components.BeanTableDataExtractor;
-import org.mindgame.swing.components.BeanTableModel;
+import org.mindgame.swing.components.models.BeanTableModel;
 
 public class BeanTableTest extends JFrame {
 
