@@ -14,14 +14,14 @@ public class SuggestionComboboxTest extends JFrame {
 	public static void main(String[] args) {
 		SuggestionComboboxTest t = new SuggestionComboboxTest();
 		try {
-			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+			UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
 		t.getContentPane().setLayout(null);
-
-		t.setSize(150,100);
+		t.setTitle("SuggestionComboboxTest");
+		t.setSize(250,200);
 		
 		String [] values = new String [] {"Mayuresh","Mithil","Anand","Tapas","Ganesh","Vinay","Rohit"};
 
