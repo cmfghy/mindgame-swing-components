@@ -4,6 +4,8 @@ import java.awt.Dimension;
 import java.util.List;
 
 import javax.swing.JTable;
+
+import org.mindgame.swing.components.models.BeanTableModel;
 /**
  * This is a JTable extension specifically designed to handle java beans.
  * It works for the bean specified as a template for the class. It has a property
