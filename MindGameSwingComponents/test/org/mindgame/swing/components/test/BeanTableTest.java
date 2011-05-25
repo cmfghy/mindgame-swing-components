@@ -75,20 +75,11 @@ public class BeanTableTest extends JFrame {
 		String getName() {
 			return name;
 		}
-		void setName(String name) {
-			this.name = name;
-		}
 		String getAge() {
 			return age;
 		}
-		void setAge(String age) {
-			this.age = age;
-		}
 		String getCity() {
 			return city;
-		}
-		void setCity(String city) {
-			this.city = city;
 		}
 	}
 }
