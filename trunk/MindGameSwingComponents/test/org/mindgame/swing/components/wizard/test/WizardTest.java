@@ -1,7 +1,6 @@
 package org.mindgame.swing.components.wizard.test;
 
 import org.mindgame.swing.components.wizard.Wizard;
-import org.mindgame.swing.components.wizard.WizardPageDescriptor;
 
 public class WizardTest {
     
@@ -9,13 +8,18 @@ public class WizardTest {
         
         Wizard wizard = new Wizard();
         wizard.setTitle("Test Wizard Dialog");
-        wizard.setForwardOnly(true);
         
-        WizardPageDescriptor itro = new IntroductionPageDescriptor();
-        wizard.registerWizardPage(IntroductionPageDescriptor.IDENTIFIER, itro);
+        wizard.registerWizardPage(new IntroductionPageDescriptor());
 
-        WizardPageDescriptor list = new ShopListDescriptor();
-        wizard.registerWizardPage(ShopListDescriptor.IDENTIFIER, list);
+        wizard.registerWizardPage(new ShopListDescriptor());
+        
+        wizard.registerWizardPage(new BooksPageDescriptor());
+        
+        wizard.registerWizardPage(new WinePageDescriptor());
+        
+        wizard.registerWizardPage(new MedicinePageDescriptor());
+        
+        wizard.registerWizardPage(new ToysPageDescriptor());
 
         wizard.setCurrentPanel(IntroductionPageDescriptor.IDENTIFIER);
         

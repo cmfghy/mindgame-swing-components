@@ -69,7 +69,6 @@ public class ShopListPage extends JPanel {
 		bookShop.setActionCommand("BOOKS");
 		group.add(bookShop);
 		panel.add(bookShop);
-		bookShop.setSelected(true);
 		
 		wineShop.setActionCommand("WINES");
 		group.add(wineShop);

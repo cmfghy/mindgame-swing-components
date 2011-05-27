@@ -1,6 +1,7 @@
 package org.mindgame.swing.components.wizard;
 
 import java.awt.*;
+
 import javax.swing.*;
 
 /**
@@ -19,7 +20,7 @@ public abstract class WizardPageDescriptor {
     /**
      * Component that will be displayed on the wizard 
      */
-    private Component page;
+    private Container page;
     /**
      * Id for this page
      */
@@ -29,7 +30,7 @@ public abstract class WizardPageDescriptor {
     	this(id,new JPanel());
     }
     
-    public WizardPageDescriptor(Object id, Component panel) {
+    public WizardPageDescriptor(Object id, Container panel) {
         pageId = id;
         page = panel;
     }
@@ -45,7 +46,7 @@ public abstract class WizardPageDescriptor {
      * Sets the page for which this descriptor is configured
      * @param panel
      */
-    public final void setPage(Component panel) {
+    public final void setPage(Container panel) {
         page = panel;
     }
     /**
@@ -60,7 +61,17 @@ public abstract class WizardPageDescriptor {
      * @param enabled
      */
     public final void enablePage(boolean enabled) {
-    	getPage().setEnabled(enabled);
+    	enableContainer(page, enabled);
+    }
+    
+    private void enableContainer(Container container, boolean enabled) {
+    	Component[] components = container.getComponents();
+    	for (int i = 0; i < components.length; i++) {
+    		if(components[i] instanceof Container) {
+    			enableContainer((Container) components[i], enabled);
+    		}
+			components[i].setEnabled(enabled);
+		}
     }
     /**
      * Sets owner wizard for the page for which this descriptor is configured

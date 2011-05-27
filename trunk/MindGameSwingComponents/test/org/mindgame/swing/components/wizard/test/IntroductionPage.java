@@ -20,7 +20,6 @@ public class IntroductionPage extends JPanel {
         add(getContentPanel(), BorderLayout.CENTER);
     }
     
-    
     private JPanel getContentPanel() {
     	ResourceBundle wizardBundle = ResourceBundle.getBundle("org.mindgame.swing.components.wizard.test.Wizard");
 

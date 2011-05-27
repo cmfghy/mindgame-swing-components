@@ -2,10 +2,10 @@ package org.mindgame.swing.components.wizard.test;
 
 import org.mindgame.swing.components.wizard.WizardPageDescriptor;
 
-public class BooksPageDescriptor extends WizardPageDescriptor {
-	public static final String IDENTIFIER = "BOOKS_PANEL";
-	public BooksPageDescriptor() {
-		super(IDENTIFIER,new BooksPage());
+public class MedicinePageDescriptor extends WizardPageDescriptor {
+	public static final String IDENTIFIER = "MEDICINES_PANEL";
+	public MedicinePageDescriptor() {
+		super(IDENTIFIER,new MedicinePage());
 	}
 
 	@Override
@@ -35,5 +35,4 @@ public class BooksPageDescriptor extends WizardPageDescriptor {
 		// TODO Auto-generated method stub
 
 	}
-
 }

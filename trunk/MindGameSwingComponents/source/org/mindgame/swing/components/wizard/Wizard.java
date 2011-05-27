@@ -152,16 +152,16 @@ public class Wizard extends JDialog implements PropertyChangeListener {
 		return wizardModel;
 	}
 
-	public void registerWizardPage(Object id, WizardPageDescriptor pageDescriptor) {
+	public void registerWizardPage(WizardPageDescriptor pageDescriptor) {
 
 		//  Add the incoming panel to our JPanel display that is managed by the CardLayout layout manager.
-		cardPanel.add(pageDescriptor.getPage(), id);
+		cardPanel.add(pageDescriptor.getPage(), pageDescriptor.getPageId());
 
 		//  Set a callback to the current wizard.
 		pageDescriptor.setWizard(this);
 
 		//  Place a reference to it in the model. 
-		wizardModel.registerPanel(id, pageDescriptor);
+		wizardModel.registerPanel(pageDescriptor.getPageId(), pageDescriptor);
 	}  
 
 	public void setCurrentPanel(Object id) {
