@@ -27,12 +27,13 @@ public class ShopListDescriptor extends WizardPageDescriptor {
 				if("BOOKS".equals(option)) {
 					nextPageId = BooksPageDescriptor.IDENTIFIER;
 				} else if("WINES".equals(option)) {
-					
+					nextPageId = FINISH;
 				} else if("MEDICINES".equals(option)) {
-					
+					nextPageId = FINISH;
 				} else if("TOYS".equals(option)) {
-					
+					nextPageId = FINISH;
 				}
+				getWizard().resetButtonsToPanelRules();
 			}
 		});
 	}
