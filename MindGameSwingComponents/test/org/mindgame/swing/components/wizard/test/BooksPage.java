@@ -5,7 +5,6 @@ import java.util.ResourceBundle;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
 
 @SuppressWarnings("serial")
 public class BooksPage extends JPanel {
@@ -13,7 +12,7 @@ public class BooksPage extends JPanel {
 	 * Title
 	 * Information text
 	 */
-	private JTextArea introductionText;
+//	private JTextArea introductionText;
     private JLabel title;
 	private ResourceBundle wizardBundle;
 
