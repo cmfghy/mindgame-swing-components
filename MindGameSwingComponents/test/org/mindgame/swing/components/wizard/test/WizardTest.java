@@ -9,6 +9,7 @@ public class WizardTest {
         
         Wizard wizard = new Wizard();
         wizard.setTitle("Test Wizard Dialog");
+        wizard.setForwardOnly(true);
         
         WizardPageDescriptor itro = new IntroductionPageDescriptor();
         wizard.registerWizardPage(IntroductionPageDescriptor.IDENTIFIER, itro);
@@ -16,9 +17,6 @@ public class WizardTest {
         WizardPageDescriptor list = new ShopListDescriptor();
         wizard.registerWizardPage(ShopListDescriptor.IDENTIFIER, list);
 
-//        WizardPageDescriptor descriptor3 = new TestPanel3Descriptor();
-//        wizard.registerWizardPage(TestPanel3Descriptor.IDENTIFIER, descriptor3);
-        
         wizard.setCurrentPanel(IntroductionPageDescriptor.IDENTIFIER);
         
         int ret = wizard.showAsModalDialog();

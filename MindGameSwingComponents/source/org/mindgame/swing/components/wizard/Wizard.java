@@ -35,6 +35,7 @@ public class Wizard extends JDialog implements PropertyChangeListener {
 
 	private WizardModel wizardModel;
 	private WizardController wizardController;
+	private boolean forwardOnly;
 
 	private JPanel cardPanel;
 	private CardLayout cardLayout;            
@@ -83,6 +84,10 @@ public class Wizard extends JDialog implements PropertyChangeListener {
 		getContentPane().add(cardPanel, java.awt.BorderLayout.CENTER);
 		getContentPane().add(createButtonPanel(), java.awt.BorderLayout.SOUTH);
 
+		wizardController.resetButtonsToPanelRules();
+	}
+	
+	public void resetButtonsToPanelRules() {
 		wizardController.resetButtonsToPanelRules();
 	}
 
@@ -167,16 +172,16 @@ public class Wizard extends JDialog implements PropertyChangeListener {
 		if (id == null)
 			close(ERROR_RETURN_CODE);
 
-		WizardPageDescriptor oldPanelDescriptor = wizardModel.getCurrentPanelDescriptor();
+		WizardPageDescriptor oldPanelDescriptor = wizardModel.getCurrentPageDescriptor();
 		if (oldPanelDescriptor != null)
 			oldPanelDescriptor.aboutToHidePanel();
 
 		wizardModel.setCurrentPanel(id);
-		wizardModel.getCurrentPanelDescriptor().aboutToDisplayPanel();
+		wizardModel.getCurrentPageDescriptor().aboutToDisplayPanel();
 
 		//  Show the panel in the dialog.        
 		cardLayout.show(cardPanel, id.toString());
-		wizardModel.getCurrentPanelDescriptor().displayingPanel();        
+		wizardModel.getCurrentPageDescriptor().displayingPanel();        
 	}
 
 	public void propertyChange(PropertyChangeEvent evt) {         
@@ -268,5 +273,21 @@ public class Wizard extends JDialog implements PropertyChangeListener {
 	void close(int code) {
 		returnCode = code;
 		dispose();
+	}
+	
+	/**
+	 * Returns true if this wizard f forward only wizard 
+	 * @return
+	 */
+	public boolean isForwardOnly() {
+		return forwardOnly;
+	}
+	
+	/**
+	 * Makes the wizard forward only
+	 * @param forwardOnly
+	 */
+	public void setForwardOnly(boolean forwardOnly) {
+		this.forwardOnly = forwardOnly;
 	}
 }

@@ -30,7 +30,7 @@ public class WizardModel {
         propertyChangeSupport = new PropertyChangeSupport(this);
     }
     
-    WizardPageDescriptor getCurrentPanelDescriptor() {
+    WizardPageDescriptor getCurrentPageDescriptor() {
         return currentPanel;
     }
     

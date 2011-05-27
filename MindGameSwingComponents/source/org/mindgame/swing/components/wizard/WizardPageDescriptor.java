@@ -56,6 +56,13 @@ public abstract class WizardPageDescriptor {
         return pageId;
     }
     /**
+     * Enables the page for which this descriptor is written
+     * @param enabled
+     */
+    public final void enablePage(boolean enabled) {
+    	getPage().setEnabled(enabled);
+    }
+    /**
      * Sets owner wizard for the page for which this descriptor is configured
      * @param w - Owner wizard
      */
