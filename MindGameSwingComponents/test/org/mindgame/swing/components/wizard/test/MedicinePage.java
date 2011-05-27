@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
 @SuppressWarnings("serial")
-public class BooksPage extends JPanel {
+public class MedicinePage extends JPanel {
 	/*
 	 * Title
 	 * Information text
@@ -17,17 +17,17 @@ public class BooksPage extends JPanel {
     private JLabel title;
 	private ResourceBundle wizardBundle;
 
-	public BooksPage() {
+	public MedicinePage() {
 		wizardBundle = ResourceBundle.getBundle("org.mindgame.swing.components.wizard.test.Wizard");
 		init();
 	}
 	
 	private void init() {
 		setLayout(new BorderLayout());
-		title = new JLabel(wizardBundle.getString("bookshop.title.text"));
+		title = new JLabel(wizardBundle.getString("medishop.title.text"));
 		add(title, BorderLayout.NORTH);
 		
-		introductionText = new JTextArea(wizardBundle.getString("bookshop.information.text"));
+		introductionText = new JTextArea(wizardBundle.getString("medishop.information.text"));
 		introductionText.setEditable(false);
 		introductionText.setOpaque(false);
 		add(introductionText, BorderLayout.CENTER);
