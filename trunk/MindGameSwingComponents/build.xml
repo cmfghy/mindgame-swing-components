@@ -1,10 +1,13 @@
 <project basedir="." name="Mindgame Swing Components" default="build">
-	<property file="build.properties"/>
+	<property name="source.dir" value="source"/>
+	<property name="build.dir" value="build"/>
+	<property name="deliverables.dir" value="deliverables"/>
 	
 	<target name="clean">
 		<delete dir="${build.dir}"/>
 		<mkdir dir="${build.dir}/classes"/>
 		<mkdir dir="${build.dir}/javadoc"/>
+		<mkdir dir="${build.dir}/deliverables"/>
 	</target>
 	
 	<target name="compile">
@@ -25,11 +28,26 @@
 		         author="true"
 		         version="true"
 		         use="true"
-		         windowtitle="Mindgame Swing API">
+		         windowtitle="Mindgame Swing API"
+				 package="false"
+				 private="false">
 		    <doctitle><![CDATA[<h1>Mindgame Swing API</h1>]]></doctitle>
 		    <bottom><![CDATA[<i>Copyright &#169; 2000 Mindgame Systems. All Rights Reserved.</i>]]></bottom>
 	  </javadoc>	
 	</target>
 	
-	<target name="build" depends="clean,compile,jar,javadoc"/>
+	<target name="prepare.deliverables">
+		<copy file="${build.dir}/mindgameswing.jar" tofile="${build.dir}/deliverables/mindgameswing.jar"/>
+		<copy todir="${build.dir}/deliverables/source">
+			<fileset dir="${source.dir}" includes="**/*.*"/>
+		</copy>
+		<copy todir="${build.dir}/deliverables/javadoc">
+			<fileset dir="${build.dir}/javadoc" includes="**/*.*"/>
+		</copy>
+		<zip destfile="${deliverables.dir}/mindgameswing.zip">
+			<fileset dir="${build.dir}/deliverables" includes="**/*.*"/>
+		</zip>
+	</target>
+	
+	<target name="build" depends="clean,compile,jar,javadoc,prepare.deliverables"/>
 </project>
