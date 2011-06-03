@@ -11,7 +11,7 @@
 	</target>
 	
 	<target name="compile">
-		<javac srcdir="${source.dir}" destdir="${build.dir}/classes"/>
+		<javac srcdir="${source.dir}" destdir="${build.dir}/classes" debug="true"/>
 	</target>
 	
 	<target name="jar">
