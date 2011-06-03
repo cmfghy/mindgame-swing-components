@@ -31,6 +31,9 @@ public abstract class Form extends JDialog {
 	
 	private Container buttonBar;
 	
+	private JButton ok;
+	
+	private JButton cancel;
 	
 	public Form() {
 		initialize();
@@ -55,7 +58,7 @@ public abstract class Form extends JDialog {
 		List<JButton> buttons = getAdditionalButtons();
 		if(buttons == null) buttons = new ArrayList<JButton>();
 		// Add ok
-		JButton ok = new JButton("Ok");
+		ok = new JButton("Ok");
 		ok.addActionListener(new ActionListener() {
 			
 			@Override
@@ -65,7 +68,7 @@ public abstract class Form extends JDialog {
 		});
 		buttons.add(ok);
 		// Add cancel
-		JButton cancel = new JButton("Cancel");
+		cancel = new JButton("Cancel");
 		cancel.addActionListener(new ActionListener() {
 			
 			@Override
@@ -84,6 +87,22 @@ public abstract class Form extends JDialog {
 		}
 	}
 	
+	public void enableOkButton() {
+		ok.setEnabled(true);
+	}
+	
+	public void disableOkButton() {
+		ok.setEnabled(false);
+	}
+
+	public void enableCancelButton() {
+		cancel.setEnabled(true);
+	}
+
+	public void disableCancelButton() {
+		cancel.setEnabled(false);
+	}
+
 	protected List<JButton> getAdditionalButtons() {
 		return null;
 	}
