@@ -143,7 +143,6 @@ public class Wizard extends JDialog implements PropertyChangeListener {
 	public int showAsModalDialog() {
 		// Sets the dialog as Modal and displays it
 		setModal(true);
-		pack();
 		setVisible(true);
 		return returnCode;
 	}
