@@ -2,6 +2,7 @@ package org.mindgame.swing.components.wizard.test;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.ResourceBundle;
 
 import org.mindgame.swing.components.wizard.WizardPageDescriptor;
 
@@ -36,6 +37,11 @@ public class ShopListDescriptor extends WizardPageDescriptor {
 				getWizard().resetButtonsToPanelRules();
 			}
 		});
+	}
+	
+	@Override
+	public String getPageTitle() {
+		return ResourceBundle.getBundle("org.mindgame.swing.components.wizard.test.Wizard").getString("shoplist.title.text");
 	}
 
 	@Override

@@ -25,7 +25,7 @@ public class WizardTest {
         
         int ret = wizard.showAsModalDialog();
         
-        wizard.setBounds(10, 10, 700, 400);
+        wizard.setSize(700, 400);
         
         System.out.println("Dialog return code is (0=Finish,1=Cancel,2=Error): " + ret);
         
