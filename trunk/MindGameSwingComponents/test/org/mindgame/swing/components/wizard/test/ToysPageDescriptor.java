@@ -1,5 +1,7 @@
 package org.mindgame.swing.components.wizard.test;
 
+import java.util.ResourceBundle;
+
 import org.mindgame.swing.components.wizard.WizardPageDescriptor;
 
 public class ToysPageDescriptor extends WizardPageDescriptor {
@@ -18,6 +20,11 @@ public class ToysPageDescriptor extends WizardPageDescriptor {
 		return ShopListDescriptor.IDENTIFIER;
 	}
 
+	@Override
+	public String getPageTitle() {
+		return ResourceBundle.getBundle("org.mindgame.swing.components.wizard.test.Wizard").getString("toyshop.title.text");
+	}
+	
 	@Override
 	public void aboutToDisplayPanel() {
 		// TODO Auto-generated method stub

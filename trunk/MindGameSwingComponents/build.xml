@@ -49,5 +49,7 @@
 		</zip>
 	</target>
 	
-	<target name="build" depends="clean,compile,jar,javadoc,prepare.deliverables"/>
+	<target name="build" depends="clean,compile,jar"/>
+	
+	<target name="build.pakage" depends="build,javadoc,prepare.deliverables"/>
 </project>

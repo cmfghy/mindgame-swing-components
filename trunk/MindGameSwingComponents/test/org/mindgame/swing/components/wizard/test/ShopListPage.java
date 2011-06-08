@@ -7,7 +7,6 @@ import java.awt.event.ActionListener;
 import java.util.ResourceBundle;
 
 import javax.swing.ButtonGroup;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextArea;
@@ -15,13 +14,11 @@ import javax.swing.JTextArea;
 @SuppressWarnings("serial")
 public class ShopListPage extends JPanel {
 	/*
-	 * A title 
 	 * A List of Radio Buttons containing shops
 	 * A Checkbox on the activity of which Next button will be enabled
 	 * An information text 	
 	 */
 	
-	private JLabel title;
 	
 	private String option;
 	
@@ -46,8 +43,6 @@ public class ShopListPage extends JPanel {
 	
 	private void init() {
 		setLayout(new BorderLayout());
-		title = new JLabel(wizardBundle.getString("shoplist.title.text"));
-		add(title, BorderLayout.NORTH);
 		add(createShopListPanel(), BorderLayout.CENTER);
 		add(createInfoPanel(), BorderLayout.SOUTH);
 	}

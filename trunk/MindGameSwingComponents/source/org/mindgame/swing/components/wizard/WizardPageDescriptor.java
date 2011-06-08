@@ -135,7 +135,7 @@ public abstract class WizardPageDescriptor {
      * @return
      */
     public String getPageTitle() {
-    	return "Default page title";
+    	return "";
     }
     
     static class FinishIdentifier {

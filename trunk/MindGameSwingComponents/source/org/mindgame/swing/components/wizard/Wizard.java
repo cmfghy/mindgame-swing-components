@@ -4,7 +4,9 @@ package org.mindgame.swing.components.wizard;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Dialog;
+import java.awt.Font;
 import java.awt.Frame;
+import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -15,6 +17,7 @@ import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.border.EmptyBorder;
@@ -44,6 +47,8 @@ public class Wizard extends JDialog implements PropertyChangeListener {
 	private JButton cancelButton;
 
 	private int returnCode;
+	
+	private JLabel currentPageTitle;
 
 	public Wizard() {
 		this((Frame)null);
@@ -65,7 +70,7 @@ public class Wizard extends JDialog implements PropertyChangeListener {
 
 		wizardController = new WizardController(this);       
 
-		getContentPane().setLayout(new BorderLayout());
+		getContentPane().setLayout(new BorderLayout(5,5));
 		addWindowListener(new WindowAdapter() {
 			/*
 			 * If the user presses the close box on the dialog's window, treat it
@@ -76,11 +81,13 @@ public class Wizard extends JDialog implements PropertyChangeListener {
 			 }
 		});
 
+		currentPageTitle = new JLabel();
 		cardPanel = new JPanel();
 		cardPanel.setBorder(new EmptyBorder(new Insets(5, 10, 5, 10)));       
-		cardLayout = new CardLayout(); 
+		cardLayout = new CardLayout();
 		cardPanel.setLayout(cardLayout);
 
+		getContentPane().add(createTitleBar(), BorderLayout.NORTH);
 		getContentPane().add(cardPanel, java.awt.BorderLayout.CENTER);
 		getContentPane().add(createButtonPanel(), java.awt.BorderLayout.SOUTH);
 
@@ -89,6 +96,16 @@ public class Wizard extends JDialog implements PropertyChangeListener {
 	
 	public void resetButtonsToPanelRules() {
 		wizardController.resetButtonsToPanelRules();
+	}
+	
+	private JPanel createTitleBar() {
+		JPanel titleBar = new JPanel(new GridLayout(0, 1));
+		this.currentPageTitle = new JLabel();
+		this.currentPageTitle.setFont(new java.awt.Font("MS Sans Serif", Font.BOLD, 13));
+		titleBar.add(this.currentPageTitle);
+		titleBar.add(new JSeparator());
+		titleBar.setBorder(new EmptyBorder(new Insets(5, 10, 5, 10)));
+		return titleBar;
 	}
 
 	private JPanel createButtonPanel() {
@@ -178,9 +195,11 @@ public class Wizard extends JDialog implements PropertyChangeListener {
 		wizardModel.setCurrentPanel(id);
 		wizardModel.getCurrentPageDescriptor().aboutToDisplayPanel();
 
-		//  Show the panel in the dialog.        
+		//  Show the panel in the dialog.       
+		currentPageTitle.setText(wizardModel.getCurrentPageDescriptor().getPageTitle());
 		cardLayout.show(cardPanel, id.toString());
-		wizardModel.getCurrentPageDescriptor().displayingPanel();        
+		wizardModel.getCurrentPageDescriptor().displayingPanel();
+		repaint();
 	}
 
 	public void propertyChange(PropertyChangeEvent evt) {         

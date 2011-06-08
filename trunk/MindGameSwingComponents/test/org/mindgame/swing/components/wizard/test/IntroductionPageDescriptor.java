@@ -1,5 +1,7 @@
 package org.mindgame.swing.components.wizard.test;
 
+import java.util.ResourceBundle;
+
 import org.mindgame.swing.components.wizard.WizardPageDescriptor;
 
 
@@ -15,7 +17,12 @@ public class IntroductionPageDescriptor extends WizardPageDescriptor {
         return ShopListDescriptor.IDENTIFIER;
     }
     
-    public Object getBackPageDescriptor() {
+    @Override
+	public String getPageTitle() {
+		return ResourceBundle.getBundle("org.mindgame.swing.components.wizard.test.Wizard").getString("introduction.title.text");
+	}
+
+	public Object getBackPageDescriptor() {
         return null;
     }
 

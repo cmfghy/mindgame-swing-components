@@ -1,5 +1,7 @@
 package org.mindgame.swing.components.wizard.test;
 
+import java.util.ResourceBundle;
+
 import org.mindgame.swing.components.wizard.WizardPageDescriptor;
 
 public class MedicinePageDescriptor extends WizardPageDescriptor {
@@ -17,6 +19,12 @@ public class MedicinePageDescriptor extends WizardPageDescriptor {
 	public Object getBackPageDescriptor() {
 		return ShopListDescriptor.IDENTIFIER;
 	}
+	
+	@Override
+	public String getPageTitle() {
+		return ResourceBundle.getBundle("org.mindgame.swing.components.wizard.test.Wizard").getString("medishop.title.text");
+	}
+	
 
 	@Override
 	public void aboutToDisplayPanel() {
