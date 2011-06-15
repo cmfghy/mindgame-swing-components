@@ -11,8 +11,10 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextArea;
 
+import org.mindgame.swing.components.wizard.WizardPage;
+
 @SuppressWarnings("serial")
-public class ShopListPage extends JPanel {
+public class ShopListPage extends WizardPage {
 	/*
 	 * A List of Radio Buttons containing shops
 	 * A Checkbox on the activity of which Next button will be enabled
@@ -101,5 +103,10 @@ public class ShopListPage extends JPanel {
 		String old = getOption();
 		this.option = option;
 		firePropertyChange("option", old, option);
+	}
+
+	@Override
+	public boolean doValidate() {
+		return true;
 	}
 }

@@ -7,8 +7,10 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
+import org.mindgame.swing.components.wizard.WizardPage;
+
 @SuppressWarnings("serial")
-public class IntroductionPage extends JPanel {
+public class IntroductionPage extends WizardPage {
  
 	private JTextArea introductionText;
     
@@ -28,4 +30,9 @@ public class IntroductionPage extends JPanel {
         panel.add(new JScrollPane(introductionText), java.awt.BorderLayout.CENTER);
         return panel;
     }
+
+	@Override
+	public boolean doValidate() {
+		return true;
+	}
 }
