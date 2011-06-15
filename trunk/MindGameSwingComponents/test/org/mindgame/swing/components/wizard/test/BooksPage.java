@@ -3,11 +3,12 @@ package org.mindgame.swing.components.wizard.test;
 import java.awt.BorderLayout;
 import java.util.ResourceBundle;
 
-import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
+import org.mindgame.swing.components.wizard.WizardPage;
+
 @SuppressWarnings("serial")
-public class BooksPage extends JPanel {
+public class BooksPage extends WizardPage {
 	/*
 	 * Information text
 	 */
@@ -25,5 +26,10 @@ public class BooksPage extends JPanel {
 		introductionText.setEditable(false);
 		introductionText.setOpaque(false);
 		add(introductionText, BorderLayout.CENTER);
+	}
+
+	@Override
+	public boolean doValidate() {
+		return true;
 	}
 }
