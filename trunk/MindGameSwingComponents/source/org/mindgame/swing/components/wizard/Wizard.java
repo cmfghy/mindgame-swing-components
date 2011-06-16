@@ -168,19 +168,19 @@ public class Wizard extends JDialog implements PropertyChangeListener {
 		return wizardModel;
 	}
 
-	public void registerWizardPage(WizardPageDescriptor pageDescriptor) {
+	public void registerWizardPage(WizardPage page) {
 
 		//  Add the incoming panel to our JPanel display that is managed by the CardLayout layout manager.
-		cardPanel.add(pageDescriptor.getPage(), pageDescriptor.getPageId());
+		cardPanel.add(page, page.getPageId());
 
 		//  Set a callback to the current wizard.
-		pageDescriptor.setWizard(this);
+		page.setWizard(this);
 
 		//  Place a reference to it in the model. 
-		wizardModel.registerPanel(pageDescriptor.getPageId(), pageDescriptor);
+		wizardModel.registerPage(page);
 	}  
 
-	public void setCurrentPanel(Object id) {
+	public void setCurrentPage(Object id) {
 
 		// Get the hashtable reference to the panel that should be displayed. 
 		// If the identifier passed in is null, then close the dialog.
@@ -188,17 +188,17 @@ public class Wizard extends JDialog implements PropertyChangeListener {
 		if (id == null)
 			close(ERROR_RETURN_CODE);
 
-		WizardPageDescriptor oldPanelDescriptor = wizardModel.getCurrentPageDescriptor();
-		if (oldPanelDescriptor != null)
-			oldPanelDescriptor.aboutToHidePanel();
+		WizardPage oldPage = wizardModel.getCurrentPage();
+		if (oldPage != null)
+			oldPage.aboutToHide();
 
-		wizardModel.setCurrentPanel(id);
-		wizardModel.getCurrentPageDescriptor().aboutToDisplayPanel();
+		wizardModel.setCurrentPage(id);
+		wizardModel.getCurrentPage().aboutToDisplay();
 
-		//  Show the panel in the dialog.       
-		currentPageTitle.setText(wizardModel.getCurrentPageDescriptor().getPageTitle());
+		//  Show the page in the dialog.       
+		currentPageTitle.setText(wizardModel.getCurrentPage().getPageTitle());
 		cardLayout.show(cardPanel, id.toString());
-		wizardModel.getCurrentPageDescriptor().displayingPanel();
+		wizardModel.getCurrentPage().displaying();
 		repaint();
 	}
 

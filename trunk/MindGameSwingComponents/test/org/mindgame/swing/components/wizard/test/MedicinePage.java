@@ -9,6 +9,7 @@ import org.mindgame.swing.components.wizard.WizardPage;
 
 @SuppressWarnings("serial")
 public class MedicinePage extends WizardPage {
+	public static final String IDENTIFIER = "MEDICINES_PANEL";
 	/*
 	 * Information text
 	 */
@@ -16,6 +17,7 @@ public class MedicinePage extends WizardPage {
 	private ResourceBundle wizardBundle;
 
 	public MedicinePage() {
+		super(IDENTIFIER);
 		wizardBundle = ResourceBundle.getBundle("org.mindgame.swing.components.wizard.test.Wizard");
 		init();
 	}
@@ -32,5 +34,29 @@ public class MedicinePage extends WizardPage {
 	public boolean doValidate() {
 		return true;
 	}
+
+	@Override
+	public Object getNextPage() {
+		return FINISH_IDENTIFIER;
+	}
+
+	@Override
+	public Object getPreviousPage() {
+		return ShopListPage.IDENTIFIER;
+	}
+	
+	@Override
+	public String getPageTitle() {
+		return wizardBundle.getString("medishop.title.text");
+	}
+
+	@Override
+	public void aboutToDisplay() {}
+
+	@Override
+	public void displaying() {}
+
+	@Override
+	public void aboutToHide() {}
 		
 }
