@@ -87,7 +87,7 @@ public class WizardController implements ActionListener {
             model.setNextFinishButtonText("Next");
         }
         //  Enable the next button if necessary
-        if (page != null && page.getNextPage() != null)
+        if (page != null && page.doValidate() && page.getNextPage() != null)
             model.setNextFinishButtonEnabled(Boolean.TRUE);
         else
             model.setNextFinishButtonEnabled(Boolean.FALSE);
