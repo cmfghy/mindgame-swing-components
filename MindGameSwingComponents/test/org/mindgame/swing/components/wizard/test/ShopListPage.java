@@ -15,13 +15,12 @@ import org.mindgame.swing.components.wizard.WizardPage;
 
 @SuppressWarnings("serial")
 public class ShopListPage extends WizardPage {
+	public static final String IDENTIFIER = "SHOPLIST_PANEL";
 	/*
 	 * A List of Radio Buttons containing shops
 	 * A Checkbox on the activity of which Next button will be enabled
 	 * An information text 	
 	 */
-	
-	
 	private String option;
 	
 	private ResourceBundle wizardBundle;
@@ -34,7 +33,10 @@ public class ShopListPage extends WizardPage {
 
 	public final JRadioButton toysShop;
 	
+	private Object nextPageId;
+	
 	public ShopListPage() {
+		super(IDENTIFIER);
 		wizardBundle = ResourceBundle.getBundle("org.mindgame.swing.components.wizard.test.Wizard");
 		bookShop = new JRadioButton("Book shops");
 		wineShop = new JRadioButton("Wine shops");
@@ -98,15 +100,47 @@ public class ShopListPage extends WizardPage {
 	public String getOption() {
 		return option;
 	}
+	
+	@Override
+	public String getPageTitle() {
+		return ResourceBundle.getBundle("org.mindgame.swing.components.wizard.test.Wizard").getString("shoplist.title.text");
+	}
 
 	public void setOption(String option) {
-		String old = getOption();
 		this.option = option;
-		firePropertyChange("option", old, option);
+		if("BOOKS".equals(option)) {
+			nextPageId = BooksPage.IDENTIFIER;
+		} else if("WINES".equals(option)) {
+			nextPageId = WinePage.IDENTIFIER;
+		} else if("MEDICINES".equals(option)) {
+			nextPageId = MedicinePage.IDENTIFIER;
+		} else if("TOYS".equals(option)) {
+			nextPageId = ToysPage.IDENTIFIER;
+		}
+		getWizard().resetButtonsToPanelRules();
 	}
 
 	@Override
 	public boolean doValidate() {
 		return true;
 	}
+
+	@Override
+	public Object getNextPage() {
+		return nextPageId;
+	}
+
+	@Override
+	public Object getPreviousPage() {
+		return IntroductionPage.IDENTIFIER;
+	}
+
+	@Override
+	public void aboutToDisplay() {}
+
+	@Override
+	public void displaying() {}
+
+	@Override
+	public void aboutToHide() {}
 }

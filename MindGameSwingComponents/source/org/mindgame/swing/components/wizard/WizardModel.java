@@ -13,9 +13,9 @@ public class WizardModel {
     public static final String CANCEL_BUTTON_TEXT_PROPERTY = "cancelButtonTextProperty";
     public static final String CANCEL_BUTTON_ENABLED_PROPERTY = "cancelButtonEnabledProperty";
     
-    private WizardPageDescriptor currentPanel;
+    private WizardPage currentPage;
     
-    private HashMap<Object, WizardPageDescriptor> panelHashmap;
+    private HashMap<Object, WizardPage> panelHashmap;
     private HashMap<String, Object> buttonTextHashmap;
     private HashMap<String, Boolean> buttonEnabledHashmap;
     
@@ -24,33 +24,32 @@ public class WizardModel {
     
     public WizardModel() {
         
-        panelHashmap = new HashMap<Object, WizardPageDescriptor>();        
+        panelHashmap = new HashMap<Object, WizardPage>();        
         buttonTextHashmap = new HashMap<String, Object>();
         buttonEnabledHashmap = new HashMap<String, Boolean>();
         propertyChangeSupport = new PropertyChangeSupport(this);
     }
     
-    WizardPageDescriptor getCurrentPageDescriptor() {
-        return currentPanel;
+    WizardPage getCurrentPage() {
+        return currentPage;
     }
     
-    void registerPanel(Object id, WizardPageDescriptor descriptor) {
-        panelHashmap.put(id, descriptor);
+    void registerPage(WizardPage page) {
+        panelHashmap.put(page.getPageId(), page);
     }  
 
-    boolean setCurrentPanel(Object id) {
-        WizardPageDescriptor nextPanel =
-            (WizardPageDescriptor)panelHashmap.get(id);
+    boolean setCurrentPage(Object id) {
+    	WizardPage nextPage = panelHashmap.get(id);
         
-        //  If we couldn't find the panel that should be displayed, return false.
+        //  If we couldn't find the page that should be displayed, return false.
         
-        if (nextPanel == null)  return false;   
+        if (nextPage == null)  return false;   
 
-        WizardPageDescriptor oldPanel = currentPanel;
-        currentPanel = nextPanel;
+        WizardPage oldPanel = currentPage;
+        currentPage = nextPage;
         
-        if (oldPanel != currentPanel)
-            firePropertyChange(CURRENT_PANEL_DESCRIPTOR_PROPERTY, oldPanel, currentPanel);
+        if (oldPanel != currentPage)
+            firePropertyChange(CURRENT_PANEL_DESCRIPTOR_PROPERTY, oldPanel, currentPage);
         
         return true;
     }

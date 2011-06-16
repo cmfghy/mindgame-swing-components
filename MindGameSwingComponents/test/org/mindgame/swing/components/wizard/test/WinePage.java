@@ -9,6 +9,7 @@ import org.mindgame.swing.components.wizard.WizardPage;
 
 @SuppressWarnings("serial")
 public class WinePage extends WizardPage {
+	public static final String IDENTIFIER = "WINES_PANEL";
 	/*
 	 * Information text
 	 */
@@ -16,6 +17,7 @@ public class WinePage extends WizardPage {
 	private ResourceBundle wizardBundle;
 
 	public WinePage() {
+		super(IDENTIFIER);
 		wizardBundle = ResourceBundle.getBundle("org.mindgame.swing.components.wizard.test.Wizard");
 		init();
 	}
@@ -32,4 +34,28 @@ public class WinePage extends WizardPage {
 	public boolean doValidate() {
 		return true;
 	}
+
+	@Override
+	public String getPageTitle() {
+		return wizardBundle.getString("wineshop.title.text");
+	}
+
+	@Override
+	public Object getNextPage() {
+		return FINISH_IDENTIFIER;
+	}
+
+	@Override
+	public Object getPreviousPage() {
+		return ShopListPage.IDENTIFIER;
+	}
+
+	@Override
+	public void aboutToDisplay() {}
+
+	@Override
+	public void displaying() {}
+
+	@Override
+	public void aboutToHide() {}
 }

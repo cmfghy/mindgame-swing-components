@@ -38,33 +38,31 @@ public class WizardController implements ActionListener {
 
     private void nextButtonPressed() {
         WizardModel model = wizard.getModel();
-        WizardPageDescriptor currentPageDescriptor = model.getCurrentPageDescriptor();
+        WizardPage currentPage = model.getCurrentPage();
     	if(this.wizard.isForwardOnly()) {
     		// Disable the current page descriptor page
-    		currentPageDescriptor.enablePage(false);
+    		currentPage.enablePage(false);
     	}
-        //  If it is a finishable panel, close down the dialog. Otherwise,
+        //  If it is a finishable page, close down the dialog. Otherwise,
         //  get the ID that the current panel identifies as the next panel,
         //  and display it.
-        Object nextPanelDescriptor = currentPageDescriptor.getNextPageDescriptor();
-        
-        if (nextPanelDescriptor instanceof WizardPageDescriptor.FinishIdentifier) {
+        Object nextPage = currentPage.getNextPage();
+        if (WizardPage.FINISH_IDENTIFIER == nextPage) {
             wizard.close(Wizard.FINISH_RETURN_CODE);
         } else {        
-            wizard.setCurrentPanel(nextPanelDescriptor);
+            wizard.setCurrentPage(nextPage);
         }
-        
     }
 
     private void backButtonPressed() {
         WizardModel model = wizard.getModel();
-        WizardPageDescriptor descriptor = model.getCurrentPageDescriptor();
+        WizardPage page = model.getCurrentPage();
  
-        //  Get the descriptor that the current panel identifies as the previous
+        //  Get the page that the current panel identifies as the previous
         //  panel, and display it.
         
-        Object backPanelDescriptor = descriptor.getBackPageDescriptor();        
-        wizard.setCurrentPanel(backPanelDescriptor);
+        Object backPanelDescriptor = page.getPreviousPage();        
+        wizard.setCurrentPage(backPanelDescriptor);
     }
 
     
@@ -74,22 +72,22 @@ public class WizardController implements ActionListener {
         //  disabled, or if the panel is finishable.
 
     	WizardModel model = wizard.getModel();
-        WizardPageDescriptor descriptor = model.getCurrentPageDescriptor();
+        WizardPage page = model.getCurrentPage();
         
         model.setCancelButtonText("Cancel");
         
         //  Enable the back button if necessary
         model.setBackButtonText("Back");
-        model.setBackButtonEnabled(descriptor != null && descriptor.getBackPageDescriptor() != null);
+        model.setBackButtonEnabled(page != null && page.getPreviousPage() != null);
 
         //  If the current page is the last page the button will be Finish else Next
-        if (descriptor != null && descriptor.getNextPageDescriptor() instanceof WizardPageDescriptor.FinishIdentifier) {
+        if (page != null && WizardPage.FINISH_IDENTIFIER == page.getNextPage()) {
             model.setNextFinishButtonText("Finish");
         } else {
             model.setNextFinishButtonText("Next");
         }
         //  Enable the next button if necessary
-        if (descriptor != null && descriptor.getNextPageDescriptor() != null)
+        if (page != null && page.getNextPage() != null)
             model.setNextFinishButtonEnabled(Boolean.TRUE);
         else
             model.setNextFinishButtonEnabled(Boolean.FALSE);

@@ -9,19 +9,19 @@ public class WizardTest {
         Wizard wizard = new Wizard();
         wizard.setTitle("Test Wizard Dialog");
         
-        wizard.registerWizardPage(new IntroductionPageDescriptor());
+        wizard.registerWizardPage(new IntroductionPage());
 
-        wizard.registerWizardPage(new ShopListDescriptor());
+        wizard.registerWizardPage(new ShopListPage());
         
-        wizard.registerWizardPage(new BooksPageDescriptor());
+        wizard.registerWizardPage(new BooksPage());
         
-        wizard.registerWizardPage(new WinePageDescriptor());
+        wizard.registerWizardPage(new WinePage());
         
-        wizard.registerWizardPage(new MedicinePageDescriptor());
+        wizard.registerWizardPage(new MedicinePage());
         
-        wizard.registerWizardPage(new ToysPageDescriptor());
+        wizard.registerWizardPage(new ToysPage());
 
-        wizard.setCurrentPanel(IntroductionPageDescriptor.IDENTIFIER);
+        wizard.setCurrentPage(IntroductionPage.IDENTIFIER);
         
         int ret = wizard.showAsModalDialog();
         
