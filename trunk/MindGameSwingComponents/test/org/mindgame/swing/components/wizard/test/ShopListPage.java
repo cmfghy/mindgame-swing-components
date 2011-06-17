@@ -121,11 +121,6 @@ public class ShopListPage extends WizardPage {
 	}
 
 	@Override
-	public boolean doValidate() {
-		return true;
-	}
-
-	@Override
 	public Object getNextPage() {
 		return nextPageId;
 	}

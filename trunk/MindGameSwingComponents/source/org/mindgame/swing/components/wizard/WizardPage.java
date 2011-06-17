@@ -110,9 +110,4 @@ public abstract class WizardPage extends JPanel {
     public String getPageTitle() {
     	return "";
     }
-    /**
-     * Validates the page
-     * @return - TURE if the page is valid else FALSE
-     */
-	public abstract boolean doValidate(); 
 }

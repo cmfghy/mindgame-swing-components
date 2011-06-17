@@ -42,11 +42,6 @@ public class IntroductionPage extends WizardPage {
     }
 
 	@Override
-	public boolean doValidate() {
-		return true;
-	}
-
-	@Override
 	public Object getNextPage() {
 		return ShopListPage.IDENTIFIER;
 	}
