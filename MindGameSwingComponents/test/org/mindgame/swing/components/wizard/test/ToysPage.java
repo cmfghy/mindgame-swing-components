@@ -31,12 +31,6 @@ public class ToysPage extends WizardPage {
 	}
 
 	@Override
-	public boolean doValidate() {
-		return true;
-	}
-	
-	
-	@Override
 	public String getPageTitle() {
 		return wizardBundle.getString("toyshop.title.text");
 	}

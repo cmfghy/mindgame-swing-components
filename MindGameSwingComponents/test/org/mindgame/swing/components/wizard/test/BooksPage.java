@@ -31,11 +31,6 @@ public class BooksPage extends WizardPage {
 	}
 
 	@Override
-	public boolean doValidate() {
-		return true;
-	}
-
-	@Override
 	public Object getNextPage() {
 		return FINISH_IDENTIFIER;
 	}
