@@ -38,9 +38,7 @@
 	
 	<target name="prepare.deliverables">
 		<copy file="${build.dir}/mindgameswing.jar" tofile="${build.dir}/deliverables/mindgameswing.jar"/>
-		<copy todir="${build.dir}/deliverables/source">
-			<fileset dir="${source.dir}" includes="**/*.*"/>
-		</copy>
+		<copy file="license.txt" tofile="${build.dir}/deliverables/license.txt"/>
 		<copy todir="${build.dir}/deliverables/javadoc">
 			<fileset dir="${build.dir}/javadoc" includes="**/*.*"/>
 		</copy>
