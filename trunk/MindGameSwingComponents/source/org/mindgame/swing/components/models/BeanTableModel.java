@@ -6,7 +6,6 @@ import java.util.List;
 
 import javax.swing.table.AbstractTableModel;
 
-import org.mindgame.swing.components.BeanTableDataExtractor;
 
 /**
  * This is a TableModel extension specifically designed to handle java beans.
