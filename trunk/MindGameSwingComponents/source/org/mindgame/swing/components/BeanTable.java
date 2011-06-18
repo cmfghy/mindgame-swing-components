@@ -54,6 +54,14 @@ public class BeanTable<M> extends JTable {
 	public void deleteLastRow() {
 		this.model.deleteLastRow();
 	}
+	/**
+	 * Returns the bean bound to the row having the given index
+	 * @param rowIndex
+	 * @return - The bean
+	 */
+	public M getRowValue(int rowIndex) {
+		return this.model.getRowValue(rowIndex);
+	}
 	
     public Dimension getPreferredScrollableViewportSize() {
         return getPreferredSize();
