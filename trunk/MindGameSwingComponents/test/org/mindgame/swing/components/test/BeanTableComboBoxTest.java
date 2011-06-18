@@ -1,32 +1,32 @@
 package org.mindgame.swing.components.test;
 
 import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
-import javax.swing.JScrollPane;
+import javax.swing.JLabel;
 import javax.swing.UIManager;
 import javax.swing.table.TableColumn;
 
 import org.mindgame.swing.components.BeanTable;
+import org.mindgame.swing.components.BeanTableComboBox;
 import org.mindgame.swing.components.models.BeanTableDataExtractor;
 import org.mindgame.swing.components.models.BeanTableModel;
 
-public class BeanTableTest extends JFrame {
-
-	private static final long serialVersionUID = 2717970857270451551L;
+public class BeanTableComboBoxTest {
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		BeanTableTest t = new BeanTableTest();
+		JFrame t = new JFrame("BeanTableTest");
 		try {
 			UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		t.getContentPane().setLayout(new BorderLayout());
-		t.setTitle("BeanTableTest");
-		t.setSize(250,200);		
+		t.getContentPane().setLayout(null);
+		t.setBounds(20, 20, 300, 300);		
 		
 		BeanTableDataExtractor<TestBean> ext = new TestBeanExtracter();
 		BeanTableModel<TestBean> m = new BeanTableModel<TestBean>(ext);
@@ -48,7 +48,19 @@ public class BeanTableTest extends JFrame {
 		table.addColumn(name);
 		table.addColumn(age);
 		table.addColumn(city);
-		t.getContentPane().add(new JScrollPane(table),BorderLayout.CENTER);
+		
+		final BeanTableComboBox<TestBean> c = new BeanTableComboBox<BeanTableComboBoxTest.TestBean>(table);
+		final JLabel l = new JLabel();
+		c.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				l.setText(String.valueOf(c.getSelectedItem()));
+			}
+		});
+		
+		c.setBounds(0, 0, 200, 20);
+		l.setBounds(0, 25, 200, 20);
+		t.getContentPane().add(c,BorderLayout.CENTER);
 		t.setVisible(true);
 	}
 	private static class TestBeanExtracter implements BeanTableDataExtractor<TestBean> {
@@ -81,5 +93,11 @@ public class BeanTableTest extends JFrame {
 		String getCity() {
 			return city;
 		}
+		
+		@Override
+		public String toString() {
+			return getName();
+		}
 	}
+
 }
