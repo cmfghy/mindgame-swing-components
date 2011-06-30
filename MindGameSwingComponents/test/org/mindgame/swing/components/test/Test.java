@@ -1,9 +1,5 @@
 package org.mindgame.swing.components.test;
 
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-
-import org.mindgame.swing.components.BeanTableComboBox;
 
 public class Test {
 
