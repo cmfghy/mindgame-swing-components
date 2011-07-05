@@ -29,7 +29,7 @@ public class LinkedButtonUI extends AbstractButtonWrapperUI {
 			public void propertyChange(PropertyChangeEvent evt) {
 				getButton().removePropertyChangeListener(AbstractButton.TEXT_CHANGED_PROPERTY, this);
 				String text = getButton().getText();
-				getButton().setText("<html><u>" + (text == null ? "" : text) + "</u></html>");				
+				getButton().setText("<html><font><u>" + (text == null ? "" : text) + "</u></font></html>");				
 				getButton().addPropertyChangeListener(AbstractButton.TEXT_CHANGED_PROPERTY, this);
 			}
 		});
