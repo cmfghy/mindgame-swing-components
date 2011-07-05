@@ -1,5 +1,11 @@
 package org.mindgame.swing.components.test;
 
+import java.awt.Color;
+import java.awt.Font;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+
 
 public class Test {
 
@@ -7,20 +13,23 @@ public class Test {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-//		final JFrame frame = new JFrame("Title");
-//		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//		frame.setBounds(20, 20, 500, 500);
-//		
-//		frame.getContentPane().setLayout(null);
-//		
-//		final BeanTableComboBox box = new BeanTableComboBox();
-//		box.setBounds(10, 10, 100, 20);
-//		frame.getContentPane().add(box);
-//
-//		final JComboBox box1 = new JComboBox();
-//		box1.setBounds(120, 10, 100, 20);
-//		frame.getContentPane().add(box1);
-//		frame.setVisible(true);
+		final JFrame frame = new JFrame("Title");
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setBounds(20, 20, 500, 500);
+		
+		frame.getContentPane().setLayout(null);
+		
+		JButton button = new JButton("<html><u>Test</u></html>");
+		button.setFont(button.getFont().deriveFont(Font.PLAIN));
+		button.setForeground(Color.BLUE);
+		button.setBorderPainted(false);
+		button.setContentAreaFilled(false);
+		button.setRolloverEnabled(true);
+		button.setBounds(0, 0, 100, 20);
+		
+		frame.add(button);
+		
+		frame.setVisible(true);
 	}
 
 }

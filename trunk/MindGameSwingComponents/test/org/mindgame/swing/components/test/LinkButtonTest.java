@@ -9,7 +9,7 @@ import javax.swing.JOptionPane;
 import org.mindgame.swing.components.LinkButton;
 
 
-public class LinkButtonText {
+public class LinkButtonTest {
 
 	/**
 	 * @param args
@@ -20,8 +20,8 @@ public class LinkButtonText {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setBounds(20, 20, 500, 500);
 		frame.getContentPane().setLayout(null);
-		
-		LinkButton button = new LinkButton(new AbstractAction("TEST") {
+		LinkButton button = new LinkButton("Test");
+		button.setAction(new AbstractAction() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				JOptionPane.showMessageDialog(frame, "Testing Linkbutton");
