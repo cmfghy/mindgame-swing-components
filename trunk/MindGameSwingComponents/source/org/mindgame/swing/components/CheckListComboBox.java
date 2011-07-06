@@ -1,5 +1,7 @@
 package org.mindgame.swing.components;
 
+import java.util.List;
+
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
@@ -16,6 +18,10 @@ public class CheckListComboBox extends JComboBox {
 		this.list = list;
 		this.setModel(new CheckListComboBoxModel());
 		setUI(null);
+	}
+	
+	public List<?> getSelectedValues() {
+		return this.list.getSelectedValues();
 	}
 	
 	@Override
