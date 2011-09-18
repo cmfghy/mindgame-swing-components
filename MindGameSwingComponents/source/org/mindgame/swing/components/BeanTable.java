@@ -21,6 +21,13 @@ public class BeanTable<M> extends JTable {
 	 */
 	private BeanTableModel<M> model;
 	
+	/**
+	 * Default constructor
+	 */
+	public BeanTable() {
+		this(null);
+	}
+	
 	public BeanTable(BeanTableModel<M> model) {
 		super(model);
 		this.model = model;

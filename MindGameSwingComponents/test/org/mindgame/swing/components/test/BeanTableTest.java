@@ -35,7 +35,8 @@ public class BeanTableTest extends JFrame {
 			m.insertRow(new TestBean("TEST" + (i+1), ""+(26+i), "City" + (i+1)));
 		}
 		
-		BeanTable<TestBean> table = new BeanTable<TestBean>(m);
+		BeanTable<TestBean> table = new BeanTable<TestBean>();
+		table.setModel(m);
 		table.setBounds(5, 5, 100, 100);
 		
 		
