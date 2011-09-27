@@ -12,6 +12,7 @@ public class DateField extends JSpinner {
 
 	public DateField() {
 		super(new SpinnerDateModel(new Date(),null,null,Calendar.DAY_OF_MONTH));
+		setEditor(new JSpinner.DateEditor(this, "dd/MM/yyyy"));
 	}
 	
 	public Date getDate() {
