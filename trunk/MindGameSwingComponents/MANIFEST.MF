@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Mindgame Swing Components
+Bundle-SymbolicName: org.mindgame.swing.components
+Bundle-Version: 1.0.0
+Export-Package: org.mindgame.swing.components,
+ org.mindgame.swing.components.forms,
+ org.mindgame.swing.components.models,
+ org.mindgame.swing.components.ui,
+ org.mindgame.swing.components.wizard
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6

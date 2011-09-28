@@ -2,6 +2,7 @@
 	<property name="source.dir" value="source"/>
 	<property name="build.dir" value="build"/>
 	<property name="deliverables.dir" value="deliverables"/>
+	<property name="export.dir" value="C:/eclipse/VJR/plugins"/>
 	
 	<target name="clean">
 		<delete dir="${build.dir}"/>
@@ -15,7 +16,7 @@
 	</target>
 	
 	<target name="jar">
-		<jar destfile="${build.dir}/mindgameswing.jar" >
+		<jar destfile="${build.dir}/org.mindgame.swing.components.jar" manifest="MANIFEST.MF">
 			<fileset dir="${build.dir}/classes" includes="**/*.class"/>
 		</jar>
 	</target>
@@ -48,6 +49,10 @@
 	</target>
 	
 	<target name="build" depends="clean,compile,jar"/>
+	
+	<target name="export.jar" depends="build">
+		<copy file="${build.dir}/org.mindgame.swing.components.jar" todir="${export.dir}"/>
+	</target>
 	
 	<target name="build.pakage" depends="build,javadoc,prepare.deliverables"/>
 </project>
