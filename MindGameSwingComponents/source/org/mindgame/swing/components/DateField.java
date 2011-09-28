@@ -18,4 +18,9 @@ public class DateField extends JSpinner {
 	public Date getDate() {
 		return ((SpinnerDateModel)getModel()).getDate();
 	}
+	
+	public void setDate(Date date) {
+		if(date == null) date = new Date();
+		((SpinnerDateModel)getModel()).setValue(date);
+	}
 }
