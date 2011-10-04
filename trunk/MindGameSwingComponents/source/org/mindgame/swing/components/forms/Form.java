@@ -109,7 +109,7 @@ public abstract class Form extends JDialog {
 	
 	protected abstract JComponent createUI();
 	
-	private void fireFormSubmitted() {
+	protected void fireFormSubmitted() {
         // Guaranteed to return a non-null array
         Object[] listeners = listenerList.getListenerList();
         SubmitEvent e = null;
@@ -126,7 +126,7 @@ public abstract class Form extends JDialog {
         }
 	}
 
-	private void fireFormCancelled() {
+	protected void fireFormCancelled() {
         // Guaranteed to return a non-null array
         Object[] listeners = listenerList.getListenerList();
         CancelEvent e = null;
