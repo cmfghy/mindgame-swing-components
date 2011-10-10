@@ -18,6 +18,7 @@
 	<target name="jar">
 		<jar destfile="${build.dir}/org.mindgame.swing.components.jar" manifest="MANIFEST.MF">
 			<fileset dir="${build.dir}/classes" includes="**/*.class"/>
+			<fileset dir="${source.dir}" includes="**/*.jpg"/>
 		</jar>
 	</target>
 	
