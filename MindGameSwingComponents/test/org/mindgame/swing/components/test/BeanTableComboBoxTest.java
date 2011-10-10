@@ -11,13 +11,13 @@ import javax.swing.table.TableColumn;
 
 import org.mindgame.swing.components.BeanTable;
 import org.mindgame.swing.components.BeanTableComboBox;
-import org.mindgame.swing.components.models.BeanTableDataExtractor;
 import org.mindgame.swing.components.models.BeanTableModel;
 
 public class BeanTableComboBoxTest {
 	/**
 	 * @param args
 	 */
+	@SuppressWarnings("serial")
 	public static void main(String[] args) {
 		JFrame t = new JFrame("BeanTableTest");
 		try {
@@ -28,8 +28,39 @@ public class BeanTableComboBoxTest {
 		t.getContentPane().setLayout(null);
 		t.setBounds(20, 20, 300, 300);		
 		
-		BeanTableDataExtractor<TestBean> ext = new TestBeanExtracter();
-		BeanTableModel<TestBean> m = new BeanTableModel<TestBean>(ext);
+		BeanTableModel<TestBean> m = new BeanTableModel<TestBean>(){
+			@Override
+			protected Object getColumnValue(int columnIndex, TestBean bean) {
+				switch (columnIndex) {
+					case 0: return bean.getName();
+					case 1: return bean.getAge();
+					case 2: return bean.getCity();
+					default: return null;
+				}
+			}
+
+			@Override
+			protected int compareObjects(int columnIndex, TestBean o1, TestBean o2) {
+				if(o1 != null && o2 != null) {
+					switch (columnIndex) {
+						case 0: 
+							if(o1.getName() != null && o2.getName() != null) {
+								return o1.getName().compareTo(o2.getName());
+							}
+						case 1:
+							if(o1.getAge() != null && o2.getAge() != null) {
+								return o1.getAge().compareTo(o2.getAge());
+							}
+						case 2: 
+							if(o1.getCity() != null && o2.getCity() != null) {
+								return o2.getCity().compareTo(o2.getCity());
+							}
+						default: return 0;
+					}
+				}
+				return 0;
+			}
+		};
 		
 		for (int i = 0; i < 5; i++) {
 			m.insertRow(new TestBean("TEST" + (i+1), ""+(26+i), "City" + (i+1)));
@@ -63,17 +94,7 @@ public class BeanTableComboBoxTest {
 		t.getContentPane().add(c,BorderLayout.CENTER);
 		t.setVisible(true);
 	}
-	private static class TestBeanExtracter implements BeanTableDataExtractor<TestBean> {
-		@Override
-		public Object getColumnValue(int columnIndex, TestBean bean) {
-			switch (columnIndex) {
-				case 0: return bean.getName();
-				case 1: return bean.getAge();
-				case 2: return bean.getCity();
-				default: return null;
-			}
-		}
-	}
+
 	private static class TestBean {
 		String name;
 		String age;
