@@ -1,6 +1,8 @@
 package org.mindgame.swing.components.models;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 import java.util.List;
 
@@ -15,26 +17,19 @@ import javax.swing.table.AbstractTableModel;
  * @author Mayuresh Halshikar
  * @param <M> - The Bean
  */
-public class BeanTableModel<M> extends AbstractTableModel {
+public abstract class BeanTableModel<M> extends AbstractTableModel {
 	private static final long serialVersionUID = 8865418800829313105L;
-	/**
-	 * Extracter used by the model to extract column value
-	 */
-	private BeanTableDataExtractor<M> extracter;
 	/**
 	 * A list containing beans that will be displayed as rows in the table 
 	 */
 	private List<M> dataProvider;
 	
-	public BeanTableModel(BeanTableDataExtractor<M> extracter, List<M> dataProvider) {
-		this.extracter = extracter;
+	public BeanTableModel() {}
+	
+	public BeanTableModel(List<M> dataProvider) {
 		this.dataProvider = dataProvider;
 	}
 	
-	public BeanTableModel(BeanTableDataExtractor<M> extracter) {
-		this(extracter, new ArrayList<M>());
-	}
-
 	@Override
 	public int getRowCount() {
 		return dataProvider == null ? 0 : dataProvider.size();
@@ -100,17 +95,43 @@ public class BeanTableModel<M> extends AbstractTableModel {
 		return null;
 	}
 	
+	public boolean isSortingOn() {
+		return true;
+	}
+	
 	@Override
 	public boolean isCellEditable(int rowIndex, int columnIndex) {
 		return true;
 	}
 
 	@Override
-	public Object getValueAt(int rowIndex, int columnIndex) {
+	public final Object getValueAt(int rowIndex, int columnIndex) {
 		M bean = getRowValue(rowIndex);
 		if(bean != null) {
-			return extracter.getColumnValue(columnIndex, bean);
+			return getColumnValue(columnIndex, bean);
 		}
 		return null;
 	}
+	
+	public final void sort(final int columnIndex, final boolean ascending) {
+		Collections.sort(this.dataProvider, new Comparator<M>() {
+			@Override
+			public int compare(M o1, M o2) {
+				int result = compareObjects(columnIndex, o1, o2);
+				if(result == 0) {
+					return 0;
+				} else if (ascending) {
+					return result;
+				} else {
+					return (result * -1);
+				}
+			}
+		});
+		fireTableDataChanged();
+	}
+
+	protected abstract Object getColumnValue(int columnIndex, M bean);
+	
+	protected abstract int compareObjects(int columnIndex, M o1, M o2);
+	
 }

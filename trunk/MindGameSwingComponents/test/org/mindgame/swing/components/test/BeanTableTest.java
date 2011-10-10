@@ -8,7 +8,6 @@ import javax.swing.UIManager;
 import javax.swing.table.TableColumn;
 
 import org.mindgame.swing.components.BeanTable;
-import org.mindgame.swing.components.models.BeanTableDataExtractor;
 import org.mindgame.swing.components.models.BeanTableModel;
 
 public class BeanTableTest extends JFrame {
@@ -17,6 +16,7 @@ public class BeanTableTest extends JFrame {
 	/**
 	 * @param args
 	 */
+	@SuppressWarnings("serial")
 	public static void main(String[] args) {
 		BeanTableTest t = new BeanTableTest();
 		try {
@@ -28,8 +28,40 @@ public class BeanTableTest extends JFrame {
 		t.setTitle("BeanTableTest");
 		t.setSize(250,200);		
 		
-		BeanTableDataExtractor<TestBean> ext = new TestBeanExtracter();
-		BeanTableModel<TestBean> m = new BeanTableModel<TestBean>(ext);
+		BeanTableModel<TestBean> m = new BeanTableModel<TestBean>(){
+
+			@Override
+			protected Object getColumnValue(int columnIndex, TestBean bean) {
+				switch (columnIndex) {
+					case 0: return bean.getName();
+					case 1: return bean.getAge();
+					case 2: return bean.getCity();
+					default: return null;
+				}
+			}
+
+			@Override
+			protected int compareObjects(int columnIndex, TestBean o1, TestBean o2) {
+				if(o1 != null && o2 != null) {
+					switch (columnIndex) {
+						case 0: 
+							if(o1.getName() != null && o2.getName() != null) {
+								return o1.getName().compareTo(o2.getName());
+							}
+						case 1:
+							if(o1.getAge() != null && o2.getAge() != null) {
+								return o1.getAge().compareTo(o2.getAge());
+							}
+						case 2: 
+							if(o1.getCity() != null && o2.getCity() != null) {
+								return o1.getCity().compareTo(o2.getCity());
+							}
+						default: return 0;
+					}
+				}
+				return 0;
+			}
+		};
 		
 		for (int i = 0; i < 5; i++) {
 			m.insertRow(new TestBean("TEST" + (i+1), ""+(26+i), "City" + (i+1)));
@@ -52,17 +84,7 @@ public class BeanTableTest extends JFrame {
 		t.getContentPane().add(new JScrollPane(table),BorderLayout.CENTER);
 		t.setVisible(true);
 	}
-	private static class TestBeanExtracter implements BeanTableDataExtractor<TestBean> {
-		@Override
-		public Object getColumnValue(int columnIndex, TestBean bean) {
-			switch (columnIndex) {
-				case 0: return bean.getName();
-				case 1: return bean.getAge();
-				case 2: return bean.getCity();
-				default: return null;
-			}
-		}
-	}
+
 	private static class TestBean {
 		String name;
 		String age;
