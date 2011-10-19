@@ -2,7 +2,7 @@
 	<property name="source.dir" value="source"/>
 	<property name="build.dir" value="build"/>
 	<property name="deliverables.dir" value="deliverables"/>
-	<property name="export.dir" value="C:/eclipse/VJR/plugins"/>
+	<property name="export.dir" value="C:/@VJR@/plugins"/>
 	
 	<target name="clean">
 		<delete dir="${build.dir}"/>
